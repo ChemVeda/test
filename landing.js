@@ -9,7 +9,7 @@
 
 /* Must match the API_URL constant near the top of app.html's <script>.
    If you ever redeploy the Google Apps Script web app, update BOTH places. */
-const API_URL = "https://script.google.com/macros/s/AKfycbzL278z7Td-RTpanA4nbfp1BoO2gXt32KCvyBcLkgyOYJ8m5EvfMkVFWFrzQZL8Pn6x9w/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzWU0wUFT1hx_s9LusfDLDQVGP2uVBIeM1xhjWDZcua-RBMAaQeRI6DGvmbafw0bb0mNA/exec";
 
 /* --------------- Navigation to the app --------------- */
 function goToApp(tab, mode) {

@@ -189,10 +189,37 @@ h3{font-size:1.1rem;font-weight:600}
 
 /* ============ Quiz ============ */
 .quiz-wrap{max-width:820px;margin:0 auto;padding:20px}
-.quiz-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.quiz-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap;position:sticky;top:10px;z-index:20;background:rgba(10,6,22,.82);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);padding:14px 18px;border-radius:18px;border:1px solid var(--border);box-shadow:0 8px 32px -12px rgba(0,0,0,.6)}
 .timer{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;background:rgba(251,191,36,.14);border:1px solid rgba(251,191,36,.3);color:#fde68a;font-family:'JetBrains Mono';font-weight:600;font-size:1rem}
 .timer.warn{background:rgba(248,113,113,.14);border-color:rgba(248,113,113,.4);color:#fecaca;animation:pulse 1.4s infinite}
 @keyframes pulse{50%{opacity:.7}}
+/* FANCY CLOCK - NEW */
+.timer-fancy{display:flex;align-items:center;gap:12px;padding:10px 18px 10px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:.02em;transition:all .35s ease;position:relative;overflow:hidden;min-width:138px}
+.timer-fancy .timer-icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#a259ff,#7c3aed);color:#fff;flex-shrink:0;box-shadow:0 4px 12px -4px rgba(162,89,255,.6);transition:all .3s}
+.timer-fancy .timer-text{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.timer-fancy.safe{color:#e9e6f2;border-color:rgba(162,89,255,.35);box-shadow:0 0 0 1px rgba(162,89,255,.15),0 8px 24px -12px rgba(162,89,255,.6)}
+.timer-fancy.safe .timer-icon{background:linear-gradient(135deg,#a259ff,#7c3aed)}
+.timer-fancy.mid{color:#fef3c7;border-color:rgba(251,191,36,.45);background:linear-gradient(135deg,rgba(251,191,36,.14),rgba(251,191,36,.06));box-shadow:0 0 0 1px rgba(251,191,36,.15),0 8px 24px -12px rgba(251,191,36,.5)}
+.timer-fancy.mid .timer-icon{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#422006}
+.timer-fancy.danger{color:#fecaca;border-color:rgba(248,113,113,.55);background:linear-gradient(135deg,rgba(248,113,113,.18),rgba(248,113,113,.08));box-shadow:0 0 0 1px rgba(248,113,113,.2),0 0 28px -8px rgba(248,113,113,.7);animation:timerPulse 1.2s ease infinite}
+.timer-fancy.danger .timer-icon{background:linear-gradient(135deg,#f87171,#ef4444);animation:iconShake .6s ease infinite}
+.timer-fancy.critical{background:linear-gradient(135deg,rgba(248,113,113,.28),rgba(239,68,68,.18));border-color:rgba(248,113,113,.7);animation:timerPulseCritical .7s ease infinite}
+.timer-fancy.critical .timer-icon{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 0 16px rgba(239,68,68,.8)}
+@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+@keyframes timerPulseCritical{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes iconShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.progress-rail{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.07);overflow:hidden;border-radius:0 0 18px 18px}
+.progress-fill{height:100%;width:100%;transition:width 1s linear, background .4s ease, box-shadow .4s ease;transform-origin:left}
+.progress-fill.safe{background:linear-gradient(90deg,#a259ff,#7c3aed,#22c55e);box-shadow:0 0 12px rgba(162,89,255,.5)}
+.progress-fill.mid{background:linear-gradient(90deg,#fbbf24,#f59e0b,#f97316);box-shadow:0 0 12px rgba(251,191,36,.5)}
+.progress-fill.danger{background:linear-gradient(90deg,#f87171,#ef4444,#dc2626);box-shadow:0 0 12px rgba(248,113,113,.6)}
+.resume-banner{margin-bottom:18px;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,rgba(162,89,255,.18),rgba(34,197,94,.12));border:1px solid rgba(162,89,255,.3);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;animation:resumeIn .4s ease}
+@keyframes resumeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.resume-banner .left{display:flex;align-items:center;gap:12px}
+.resume-dot{width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2);animation:dotPulse 1.5s infinite}
+@keyframes dotPulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.test-row.has-resume{border-color:rgba(162,89,255,.35);background:linear-gradient(135deg,rgba(162,89,255,.08),rgba(255,255,255,.03))}
+.resume-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.3);color:#86efac;font-size:.72rem;font-weight:700;letter-spacing:.02em}
 .q-card{padding:24px}
 .q-num{font-size:.8rem;color:var(--text-dim);letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
 .q-text{font-family:'Space Grotesk';font-weight:600;font-size:1.15rem;line-height:1.4;margin-bottom:6px}
@@ -324,7 +351,7 @@ h3{font-size:1.1rem;font-weight:600}
    ChemVeda Pro 2026-27 — Client
    ============================================================== */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzL278z7Td-RTpanA4nbfp1BoO2gXt32KCvyBcLkgyOYJ8m5EvfMkVFWFrzQZL8Pn6x9w/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzWU0wUFT1hx_s9LusfDLDQVGP2uVBIeM1xhjWDZcua-RBMAaQeRI6DGvmbafw0bb0mNA/exec";
 
 /* Lottie animation URLs (LottieFiles public CDN) */
 const LOTTIE = {
@@ -733,9 +760,29 @@ async function renderHome(root){
     html += '</div>';
     html += '<div class="hero-logo-wrap" title="ChemVeda Logo"><div class="hero-logo-ring"></div>' + logoInner + '</div>';
     html += '</div>';
+
+    // --- Resume banner on home ---
+    try {
+      var resumes = (typeof getAllResumes==='function') ? getAllResumes() : [];
+      if (resumes.length){
+        html += '<div class="resume-banner" style="margin-top:18px"><div class="left"><span class="resume-dot"></span><div><b>⏸ Continue your test</b><div class="tiny muted">' + resumes[0].resume.test.title + ' • ' + fmtSec(resumes[0].remain) + ' left</div></div></div><button class="btn btn-green btn-sm" id="homeResumeBtn">Resume Now ↻</button></div>';
+      }
+    } catch(e){}
+
     html += '<div class="section-header"><h2>Study Feed</h2></div><div id="feedWrap"></div>';
 
     root.innerHTML = html;
+
+    try {
+      var hrBtn = root.querySelector("#homeResumeBtn");
+      if (hrBtn){
+        hrBtn.onclick = function(){
+          var rs = (typeof getAllResumes==='function') ? getAllResumes() : [];
+          if (rs.length) startQuiz(rs[0].testId, false, true);
+          else { state.tab="tests"; render(); }
+        };
+      }
+    } catch(e){}
 
     var wrap = root.querySelector("#feedWrap");
     if (!feed.length) {
@@ -821,6 +868,14 @@ async function renderTests(root){
     var currentFilter = savedFilter;
     if (["unattempted","attempted","all"].indexOf(currentFilter)===-1) currentFilter = "unattempted";
 
+    // --- Resume detection ---
+    var allResumes = [];
+    try { if (typeof getAllResumes === 'function') allResumes = getAllResumes(); } catch(e){}
+    // also quick check for current filter list resume map
+    function getResumeFor(testId){
+      try { return getResumeInfo ? getResumeInfo(testId) : null; } catch(e){ return null; }
+    }
+
     function renderList(list){
       if (!list.length){
         var msg = "";
@@ -838,15 +893,26 @@ async function renderTests(root){
         var prevPctStr = prevPct!=null ? prevPct+"%" : "";
         var lastStr = "";
         if (isAttempted && prevPct!=null) lastStr = ' <span style="color:#86efac">Last: ' + esc(prevPctStr) + '</span>';
-        out += '<div class="test-row" data-testid="test-row">';
-        out += '<div class="meta"><b>' + esc(t2.title) + '</b><small>' + esc(t2.subject) + ' · ' + esc(fmtDay(t2.date)) + ' · ' + t2.timer + ' min · ' + t2.questionsCount + ' Q' + lastStr + '</small></div>';
+        var resumeInfo = getResumeFor(t2.testId);
+        var hasResume = !!resumeInfo;
+        out += '<div class="test-row ' + (hasResume?'has-resume':'') + '" data-testid="test-row">';
+        out += '<div class="meta"><b>' + esc(t2.title) + (hasResume?' <span class="resume-badge">⏸ Resume</span>':'') + '</b><small>' + esc(t2.subject) + ' · ' + esc(fmtDay(t2.date)) + ' · ' + t2.timer + ' min · ' + t2.questionsCount + ' Q' + lastStr + '</small>';
+        if (hasResume){
+          out += '<div class="tiny" style="margin-top:6px;color:#86efac">⏱ ' + fmtSec(resumeInfo.remain) + ' left • ' + resumeInfo.resume.answers.filter(a=>a!=null).length + '/' + t2.questionsCount + ' answered • saved ' + fmtAgo(resumeInfo.resume.startedAt) + '</div>';
+        }
+        out += '</div>';
         out += '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end">';
+        if (hasResume){
+          out += '<button class="btn btn-green btn-sm resume-test" data-id="' + esc(t2.testId) + '" data-testid="btn-resume-' + esc(t2.testId) + '">Resume ↻</button>';
+        }
         if (isAttempted){
           out += '<span class="badge green">✓ ' + esc(prevPctStr) + ' Attempted</span>';
           out += '<button class="btn btn-ghost btn-sm view-review" data-id="' + esc(t2.testId) + '">View Review</button>';
           out += '<button class="btn btn-primary btn-sm reattempt-btn" data-id="' + esc(t2.testId) + '" data-pct="' + esc(prevPct!=null?String(prevPct):"") + '" title="Old data will be overwritten">Reattempt</button>';
         } else {
-          out += '<button class="btn btn-primary btn-sm start-test" data-id="' + esc(t2.testId) + '" data-testid="btn-start-' + esc(t2.testId) + '">Start</button>';
+          if (!hasResume){
+            out += '<button class="btn btn-primary btn-sm start-test" data-id="' + esc(t2.testId) + '" data-testid="btn-start-' + esc(t2.testId) + '">Start</button>';
+          }
         }
         out += '</div></div>';
       }
@@ -857,12 +923,32 @@ async function renderTests(root){
     for (var tt=0;tt<tests.length;tt++){ if (tests[tt].testId===todayTestId && !takenIds.has(tests[tt].testId)){ today = tests[tt]; break; } }
 
     var htmlOut = "";
+
+    // Global resume banner if any ongoing tests
+    if (allResumes.length){
+      htmlOut += '<div class="resume-banner" data-testid="resume-banner">';
+      htmlOut += '<div class="left"><span class="resume-dot"></span><div><b>⏸ You have ' + allResumes.length + ' unfinished test' + (allResumes.length>1?'s':'') + '</b><div class="tiny muted">Continue where you left off — time is preserved</div></div></div>';
+      htmlOut += '<div style="display:flex;gap:8px;flex-wrap:wrap">';
+      for (var ri=0; ri<Math.min(3, allResumes.length); ri++){
+        var rr = allResumes[ri];
+        var ttObj = tests.find(function(x){ return x.testId===rr.testId; });
+        var tTitle = ttObj ? ttObj.title : rr.testId;
+        htmlOut += '<button class="btn btn-green btn-sm resume-test" data-id="' + esc(rr.testId) + '">Resume ' + esc(tTitle.substring(0,18)) + ' • ' + fmtSec(rr.remain) + '</button>';
+      }
+      htmlOut += '</div></div>';
+    }
+
     if (today){
+      var todayResume = getResumeFor(today.testId);
       htmlOut += '<div class="glass today-card" data-testid="today-test" style="padding:18px;margin-bottom:18px;border:1px solid rgba(34,197,94,.3)">';
-      htmlOut += '<span class="badge green">● Today • Unattempted</span>';
+      htmlOut += '<span class="badge green">● Today • ' + (todayResume?'Resume':'Unattempted') + '</span>';
       htmlOut += '<h3 style="margin:8px 0 4px">' + esc(today.title) + '</h3>';
-      htmlOut += '<p class="muted" style="margin:6px 0 14px">' + esc(today.subject) + ' · ' + today.timer + ' min · ' + today.questionsCount + ' questions</p>';
-      htmlOut += '<button class="btn btn-green" id="startToday" data-testid="btn-start-today">Start Today\'s Test →</button>';
+      htmlOut += '<p class="muted" style="margin:6px 0 14px">' + esc(today.subject) + ' · ' + today.timer + ' min · ' + today.questionsCount + ' questions' + (todayResume ? ' · <span style="color:#86efac">⏱ ' + fmtSec(todayResume.remain) + ' left</span>' : '') + '</p>';
+      if (todayResume){
+        htmlOut += '<div style="display:flex;gap:8px"><button class="btn btn-green" data-id="' + esc(today.testId) + '" id="resumeToday">Resume Test ↻</button><button class="btn btn-ghost btn-sm" id="startToday">Start Fresh</button></div>';
+      } else {
+        htmlOut += '<button class="btn btn-green" id="startToday" data-testid="btn-start-today">Start Today\'s Test →</button>';
+      }
       htmlOut += '</div>';
     }
 
@@ -873,7 +959,7 @@ async function renderTests(root){
     htmlOut += '<button class="test-tab ' + (currentFilter==="all"?"active":"") + '" data-filter="all">🔁 All / Reattempt (' + tests.length + ')</button>';
     htmlOut += '</div>';
     htmlOut += '<div id="testList"></div>';
-    htmlOut += '<p class="leaderboard-note">💡 Reattempt will overwrite your old score and time. New result appears in leaderboard with IST (+5:30) time.</p>';
+    htmlOut += '<p class="leaderboard-note">💡 Reattempt will overwrite your old score and time. New result appears in leaderboard with IST (+5:30) time. Unfinished tests auto-save and can be resumed after refresh or closing the app.</p>';
 
     root.innerHTML = htmlOut;
 
@@ -886,6 +972,8 @@ async function renderTests(root){
       tl.innerHTML = renderList(list);
       var startBtns = tl.querySelectorAll(".start-test");
       for (var s=0;s<startBtns.length;s++){ (function(btn){ btn.onclick = function(){ startQuiz(btn.dataset.id); }; })(startBtns[s]); }
+      var resumeBtns = tl.querySelectorAll(".resume-test");
+      for (var rb=0; rb<resumeBtns.length; rb++){ (function(btn){ btn.onclick = function(){ startQuiz(btn.dataset.id, false, true); }; })(resumeBtns[rb]); }
       var revBtns = tl.querySelectorAll(".view-review");
       for (var r=0;r<revBtns.length;r++){ (function(btn){ btn.onclick = function(){ openPastReview(btn.dataset.id, btn); }; })(revBtns[r]); }
       var reBtns = tl.querySelectorAll(".reattempt-btn");
@@ -915,12 +1003,22 @@ async function renderTests(root){
     var lbBtn = root.querySelector("#lbBtn");
     if (lbBtn) lbBtn.onclick = function(){ openLeaderboard(); };
     var startTodayBtn = root.querySelector("#startToday");
-    if (startTodayBtn && today) { (function(t){ startTodayBtn.onclick = function(){ startQuiz(t.testId); }; })(today); }
+    if (startTodayBtn && today) { (function(t){ startTodayBtn.onclick = function(){ 
+      var isRes = t && getResumeFor(t.testId);
+      if (isRes) startQuiz(t.testId, true); else startQuiz(t.testId); 
+    }; })(today); }
+    var resumeTodayBtn = root.querySelector("#resumeToday");
+    if (resumeTodayBtn && today) { (function(t){ resumeTodayBtn.onclick = function(){ startQuiz(t.testId, false, true); }; })(today); }
+
+    // resume banner buttons
+    var bannerResumeBtns = root.querySelectorAll(".resume-banner .resume-test");
+    for (var br=0; br<bannerResumeBtns.length; br++){ (function(btn){ btn.onclick = function(){ startQuiz(btn.dataset.id, false, true); }; })(bannerResumeBtns[br]); }
 
     updateList();
 
   } catch (e) { root.innerHTML = errorMsg(e.message); }
 }
+
 
 
 async function openLeaderboard(){
@@ -955,35 +1053,104 @@ async function openLeaderboard(){
 
 
 /* --- QUIZ --- */
-async function startQuiz(testId, isReattempt){
+function fmtAgo(ts){
+  try {
+    var diff = Math.floor((Date.now() - ts)/1000);
+    if (diff < 60) return "just now";
+    if (diff < 3600) return Math.floor(diff/60)+"m ago";
+    if (diff < 86400) return Math.floor(diff/3600)+"h ago";
+    return Math.floor(diff/86400)+"d ago";
+  } catch(e){ return ""; }
+}
+async function startQuiz(testId, isReattempt, isResume){
   if (isReattempt===undefined) isReattempt = false;
-  showLoading(isReattempt ? "Starting reattempt…" : "Loading test…");
+  if (isResume===undefined) isResume = false;
+  showLoading(isReattempt ? "Starting reattempt…" : isResume ? "Resuming test…" : "Loading test…");
   try {
     var testData = await api("getTest", { testId: testId });
     var test = testData.test;
     if (isReattempt) store.del("resume_" + testId);
-    var saved = isReattempt ? null : store.get("resume_" + testId);
+
+    var saved = null;
     var startedAt = Date.now();
-    if (saved && saved.startedAt && typeof saved.startedAt==="number" && saved.startedAt<=Date.now() && (Date.now()-saved.startedAt) < (test.timer*60*1000 + 600000)){
-      startedAt = saved.startedAt;
-    }
     var answers = null;
-    if (saved && saved.answers && saved.answers.length===test.questions.length) answers = saved.answers;
-    else answers = new Array(test.questions.length).fill(null);
+    var cursor = 0;
+
+    if (!isReattempt){
+      saved = store.get("resume_" + testId);
+      if (saved && saved.startedAt && saved.answers && saved.answers.length===test.questions.length){
+        var elapsed = Math.floor((Date.now() - saved.startedAt)/1000);
+        var totalSec = test.timer*60;
+        if (elapsed < totalSec){
+          // valid resume
+          startedAt = saved.startedAt;
+          answers = saved.answers;
+          cursor = saved.cursor||0;
+          if (isResume){
+            // explicit resume requested
+          }
+        } else {
+          // expired
+          store.del("resume_" + testId);
+          saved = null;
+        }
+      }
+    }
+
+    if (!answers){
+      answers = new Array(test.questions.length).fill(null);
+    }
+
     state.quiz = {
       test: test,
       answers: answers,
-      cursor: saved ? (saved.cursor||0) : 0,
+      cursor: cursor,
       startedAt: startedAt,
       timerSec: test.timer * 60,
       isReattempt: !!isReattempt
     };
     hideLoading();
     if (isReattempt) toast("Reattempt started — old score will be overwritten on submit", "success");
+    else if (saved) {
+      var rem = Math.max(0, Math.floor((test.timer*60) - (Date.now()-startedAt)/1000));
+      toast("Resumed with " + fmtSec(rem) + " left", "success");
+    }
     render();
   } catch (e) { hideLoading(); toast(e.message, "error"); }
 }
 
+
+function saveResume(){
+  if (!state.quiz) return;
+  try {
+    const q = state.quiz;
+    store.set("resume_"+q.test.testId, {test: q.test, answers: q.answers, cursor: q.cursor, startedAt: q.startedAt});
+  } catch(e){}
+}
+function getResumeInfo(testId){
+  try {
+    const r = store.get("resume_"+testId);
+    if (!r || !r.startedAt || !r.test) return null;
+    const elapsed = Math.floor((Date.now() - r.startedAt)/1000);
+    const timerSec = (r.test.timer||15)*60;
+    const remain = timerSec - elapsed;
+    if (remain <= 0) { store.del("resume_"+testId); return null; }
+    return { resume: r, remain, elapsed, percent: (remain/timerSec)*100 };
+  } catch(e){ return null; }
+}
+function getAllResumes(){
+  const list=[];
+  try {
+    for (let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if (k && k.startsWith("resume_")){
+        const info=getResumeInfo(k.replace("resume_",""));
+        if (info) list.push({testId:k.replace("resume_",""), ...info});
+      }
+    }
+  } catch(e){}
+  return list.sort((a,b)=>b.resume.startedAt-a.resume.startedAt);
+}
 
 function renderQuiz(root){
   const q = state.quiz;
@@ -991,15 +1158,27 @@ function renderQuiz(root){
   const question = q.test.questions[cur];
   const elapsed = Math.floor((Date.now() - q.startedAt) / 1000);
   const remain = Math.max(q.timerSec - elapsed, 0);
+  const totalSec = q.timerSec;
+  const percentRemain = Math.max(0, Math.min(100, (remain/totalSec)*100));
+  const percentUsed = 100 - percentRemain;
+  let timerClass = "safe";
+  if (percentRemain <= 50 && percentRemain > 25) timerClass = "mid";
+  else if (percentRemain <= 25 && percentRemain > 8) timerClass = "danger";
+  else if (percentRemain <= 8) timerClass = "critical";
 
   root.innerHTML = `
     <div class="quiz-wrap">
-      <div class="quiz-head">
-        <div>
+      <div class="quiz-head" id="quizHead">
+        <div style="flex:1;min-width:180px">
           <span class="badge purple">${esc(q.test.subject)}</span>
-          <h2 style="margin-top:6px">${esc(q.test.title)}</h2>
+          <h2 style="margin-top:6px;font-size:1.15rem">${esc(q.test.title)}</h2>
+          <div class="tiny muted" style="margin-top:4px">Q ${cur+1}/${q.test.questions.length} • ${q.answers.filter(a=>a!=null).length} answered</div>
         </div>
-        <div class="timer" id="timer" data-testid="quiz-timer">⏱ <span id="timerTxt">${fmtSec(remain)}</span></div>
+        <div class="timer-fancy ${timerClass}" id="timer" data-testid="quiz-timer">
+          <div class="timer-icon">⏱</div>
+          <span class="timer-text" id="timerTxt">${fmtSec(remain)}</span>
+          <div class="progress-rail"><div class="progress-fill ${timerClass}" id="progressFill" style="width:${percentRemain}%"></div></div>
+        </div>
       </div>
 
       <div class="glass q-card" data-testid="quiz-question">
@@ -1011,6 +1190,7 @@ function renderQuiz(root){
 
       <div class="quiz-controls">
         <button class="btn btn-ghost" id="prev" ${cur===0?'disabled':''} data-testid="btn-prev">← Prev</button>
+        <button class="btn btn-ghost" id="saveExit" style="margin-right:auto" data-testid="btn-save-exit">💾 Save & Exit</button>
         ${cur === q.test.questions.length - 1
           ? `<button class="btn btn-green" id="submit" data-testid="btn-submit-quiz">Submit ✓</button>`
           : `<button class="btn btn-primary" id="next" data-testid="btn-next">Next →</button>`}
@@ -1019,6 +1199,7 @@ function renderQuiz(root){
       <div class="palette" data-testid="quiz-palette">${q.test.questions.map((_,i)=>`
         <button class="pal-btn ${q.answers[i]!=null?'answered':''} ${i===cur?'current':''}" data-i="${i}">${i+1}</button>
       `).join("")}</div>
+      <div class="tiny muted" style="text-align:center;margin-top:14px">Your progress is auto-saved every second. You can close and resume later.</div>
     </div>`;
 
   // options
@@ -1033,31 +1214,64 @@ function renderQuiz(root){
     div.setAttribute("data-testid", `quiz-option-${i}`);
     div.innerHTML = `<div class="letter">${String.fromCharCode(65+i)}</div>
       <div><div class="txt">${chem(op)}</div>${question.options_hi&&question.options_hi[i]?`<div class="txt-hi hi">${esc(question.options_hi[i])}</div>`:""}</div>`;
-    div.onclick = () => { q.answers[cur] = i; store.set("resume_"+q.test.testId, {test: q.test, answers: q.answers, cursor: q.cursor, startedAt: q.startedAt}); render(); };
+    div.onclick = () => { 
+      q.answers[cur] = i; 
+      saveResume();
+      render(); 
+    };
     opts.appendChild(div);
   });
 
-  // nav
+  const goTo = (newIdx) => { q.cursor = newIdx; saveResume(); render(); };
+
   const btnPrev = root.querySelector("#prev");
-  if (btnPrev) btnPrev.onclick = () => { q.cursor = Math.max(0, cur - 1); render(); };
+  if (btnPrev) btnPrev.onclick = () => goTo(Math.max(0, cur - 1));
   const btnNext = root.querySelector("#next");
-  if (btnNext) btnNext.onclick = () => { q.cursor = Math.min(q.test.questions.length-1, cur+1); render(); };
+  if (btnNext) btnNext.onclick = () => goTo(Math.min(q.test.questions.length-1, cur+1));
   const btnSubmit = root.querySelector("#submit");
   if (btnSubmit) btnSubmit.onclick = confirmSubmit;
+  const btnSaveExit = root.querySelector("#saveExit");
+  if (btnSaveExit) btnSaveExit.onclick = () => {
+    saveResume();
+    state.quiz = null;
+    state.tab = "tests";
+    toast("Progress saved — you can resume anytime", "success");
+    render();
+  };
 
-  root.querySelectorAll(".pal-btn").forEach(b => b.onclick = () => { q.cursor = Number(b.dataset.i); render(); });
+  root.querySelectorAll(".pal-btn").forEach(b => b.onclick = () => goTo(Number(b.dataset.i)));
 
-  // timer tick
+  // timer tick with fancy color + progress bar
   clearInterval(window.__timerId);
   window.__timerId = setInterval(() => {
     const el = Math.floor((Date.now() - q.startedAt) / 1000);
     const r = Math.max(q.timerSec - el, 0);
+    const pct = Math.max(0, (r/q.timerSec)*100);
     const tt = root.querySelector("#timerTxt");
-    if (!tt) return clearInterval(window.__timerId);
+    const prog = root.querySelector("#progressFill");
+    const timerEl = root.querySelector("#timer");
+    if (!tt || !timerEl) return clearInterval(window.__timerId);
     tt.textContent = fmtSec(r);
-    if (r < 120) root.querySelector("#timer").classList.add("warn");
+    if (prog) prog.style.width = pct+"%";
+
+    // update color classes based on remaining %
+    let cls = "safe";
+    if (pct <= 50 && pct > 25) cls = "mid";
+    else if (pct <= 25 && pct > 8) cls = "danger";
+    else if (pct <= 8) cls = "critical";
+    timerEl.className = "timer-fancy "+cls;
+    if (prog) prog.className = "progress-fill "+cls;
+
+    // auto-save each second
+    if (el % 2 === 0) saveResume();
+
     if (r <= 0) { clearInterval(window.__timerId); submitQuiz(true); }
   }, 1000);
+
+  // save on page hide/close
+  const onBeforeUnload = () => saveResume();
+  window.addEventListener("beforeunload", onBeforeUnload, {once:true});
+  window.addEventListener("pagehide", onBeforeUnload, {once:true});
 }
 
 function fmtSec(s){ const m = Math.floor(s/60), r = s%60; return `${String(m).padStart(2,"0")}:${String(r).padStart(2,"0")}`; }
@@ -2042,27 +2256,38 @@ document.addEventListener("keydown", (e) => {
     sessionStorage.removeItem("pendingTab");
     state.tab = pendingTab || store.get("activeTab") || "home";
     if (pendingTab) store.set("activeTab", pendingTab);
-    // Restore in-progress quiz from localStorage
-    const resumeKeys = Object.keys(localStorage).filter(k => k.startsWith("resume_"));
-    if (resumeKeys.length) {
-      // find most recently started quiz
-      let latest = null;
-      resumeKeys.forEach(k => {
-        const q = store.get(k);
-        if (q && q.test && (!latest || q.startedAt > latest.startedAt)) latest = q;
+
+    // --- Enhanced resume restore with cleanup ---
+    try {
+      // cleanup expired resumes first (getResumeInfo auto-deletes)
+      var keys = Object.keys(localStorage).filter(k => k.startsWith("resume_"));
+      var validResumes = [];
+      keys.forEach(k => {
+        var tid = k.replace("resume_","");
+        var info = null;
+        try {
+          var r = store.get(k);
+          if (r && r.test){
+            var el = Math.floor((Date.now() - r.startedAt)/1000);
+            var tSec = (r.test.timer||15)*60;
+            if (el < tSec) validResumes.push({key:k, data:r, remain:tSec-el});
+            else store.del(k);
+          }
+        } catch(e){}
       });
-      if (latest) {
-        // Recalculate remaining time — if expired, don't restore
-        const elapsed = Math.floor((Date.now() - latest.startedAt) / 1000);
-        const timerSec = (latest.test.timer || 15) * 60;
+      if (validResumes.length){
+        validResumes.sort((a,b)=>b.data.startedAt-a.data.startedAt);
+        var latest = validResumes[0].data;
+        var elapsed = Math.floor((Date.now() - latest.startedAt) / 1000);
+        var timerSec = (latest.test.timer || 15) * 60;
         if (elapsed < timerSec) {
-          state.quiz = Object.assign({ timerSec }, latest);
-        } else {
-          // Timer expired while away — auto-submit silently on next render
-          store.del("resume_" + latest.test.testId);
+          state.quiz = Object.assign({ timerSec: timerSec }, latest);
+          // toast after render
+          setTimeout(()=>{ try{ toast("Resumed " + (latest.test.title||"test") + " with " + fmtSec(timerSec-elapsed) + " left","success"); }catch(e){} }, 600);
         }
       }
-    }
+    } catch(e){ console.warn("resume boot error", e); }
+
   } else {
     state.route = "auth";
     const modePref = sessionStorage.getItem("authModePref");
